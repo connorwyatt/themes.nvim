@@ -22,6 +22,7 @@ local function highlights(palette)
     local comment_text_color = palette.subtle
     local operator_text_color = palette.subtle
     local punctuation_text_color = palette.subtle
+    local file_text_color = palette.yellow
     local guide_color = palette.muted
     local whitespace_text_color = c.blend(palette.subtle, 0.25, palette.muted)
 
@@ -44,8 +45,8 @@ local function highlights(palette)
             BlinkCmpKindEnum = { link = "BlinkCmpKindClass" },
             BlinkCmpKindEnumMember = { link = "BlinkCmpKindConstant" },
             BlinkCmpKindField = { link = "BlinkCmpKindProperty" },
-            BlinkCmpKindFile = { link = "BlinkCmpKindFolder" },
-            BlinkCmpKindFolder = { fg = palette.surface, bg = palette.yellow },
+            BlinkCmpKindFile = { fg = palette.surface, bg = file_text_color },
+            BlinkCmpKindFolder = { link = "BlinkCmpKindFile" },
             BlinkCmpKindFunction = { fg = palette.surface, bg = function_text_color },
             BlinkCmpKindInterface = { link = "BlinkCmpKindClass" },
             BlinkCmpKindKeyword = { fg = palette.surface, bg = keyword_text_color },
@@ -248,6 +249,36 @@ local function highlights(palette)
             LuasnipInsertNodeVisited = { sp = palette.cyan_background, underdashed = true },
             LuasnipInsertNodeVisitedVirtualText = { fg = palette.cyan_background },
         },
+        navic = {
+            NavicIconsFile = { fg = file_text_color },
+            NavicIconsModule = { fg = keyword_text_color },
+            NavicIconsNamespace = { fg = keyword_text_color },
+            NavicIconsPackage = { fg = keyword_text_color },
+            NavicIconsClass = { fg = type_text_color },
+            NavicIconsMethod = { link = "NavicIconsFunction" },
+            NavicIconsProperty = { fg = property_text_color },
+            NavicIconsField = { link = "NavicIconsProperty" },
+            NavicIconsConstructor = { link = "NavicIconsMethod" },
+            NavicIconsEnum = { link = "NavicIconsProperty" },
+            NavicIconsInterface = { link = "NavicIconsClass" },
+            NavicIconsFunction = { fg = function_text_color },
+            NavicIconsVariable = { fg = property_text_color },
+            NavicIconsConstant = { link = "NavicIconsVariable" },
+            NavicIconsString = { fg = string_text_color },
+            NavicIconsNumber = { fg = number_text_color },
+            NavicIconsBoolean = { fg = boolean_text_color },
+            NavicIconsArray = { fg = type_text_color },
+            NavicIconsObject = { fg = type_text_color },
+            NavicIconsKey = { fg = keyword_text_color },
+            NavicIconsNull = { fg = keyword_text_color },
+            NavicIconsEnumMember = { link = "NavicIconsProperty" },
+            NavicIconsStruct = { fg = type_text_color },
+            NavicIconsEvent = { fg = type_text_color },
+            NavicIconsOperator = { fg = operator_text_color },
+            NavicIconsTypeParameter = { fg = parameter_text_color },
+            NavicText = { link = "Normal" },
+            NavicSeparator = { fg = whitespace_text_color },
+        },
         neotree = {
             NeoTreeFileName = { fg = palette.text },
             NeoTreeFileStats = { fg = palette.subtle },
@@ -282,6 +313,7 @@ local function highlights(palette)
             StatusLineDiagnosticHint = { link = "DiagnosticHint" },
             StatusLineDiagnosticInfo = { link = "DiagnosticInfo" },
             StatusLineDiagnosticWarning = { link = "DiagnosticWarn" },
+            StatusLineDiagnosticNone = { fg = palette.subtle },
             StatusLineDivider = { fg = palette.muted },
             StatusLineFileBaseName = { fg = palette.text },
             StatusLineFileBaseNameModified = { fg = palette.text },
@@ -293,6 +325,8 @@ local function highlights(palette)
             StatusLineGitBranch = { fg = palette.red },
             StatusLineGitChanged = { fg = git_changed_text_color },
             StatusLineGitRemoved = { fg = git_removed_text_color },
+            StatusLineGitNone = { fg = palette.subtle },
+            StatusLineLSPText = { fg = palette.green },
             StatusLineModeCommand = { bg = palette.green, fg = palette.overlay, bold = true },
             StatusLineModeCommandText = { bg = "NONE", fg = palette.green, bold = true },
             StatusLineModeInsert = { bg = palette.yellow, fg = palette.overlay, bold = true },
