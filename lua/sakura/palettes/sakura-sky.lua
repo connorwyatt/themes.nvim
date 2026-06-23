@@ -1,5 +1,5 @@
 local color_palette = require("sakura.colors")
-local c = require("sakura.color-utils")
+local c = require("themes.color-utils")
 
 local base = { 210, 40, 92 }
 local text = { 210, 20, 40 }

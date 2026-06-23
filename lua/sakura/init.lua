@@ -1,4 +1,4 @@
-local c = require("sakura.color-utils")
+local c = require("themes.color-utils")
 
 local function highlights(palette)
     local float_background_color = palette.surface
