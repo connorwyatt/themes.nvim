@@ -1,35 +1,32 @@
 # AGENTS.md
 
-This document provides guidance for AI agents and human contributors working on sakura.nvim.
+This document provides guidance for AI agents and human contributors working on themes.nvim.
 
 ## Project Overview
 
-sakura.nvim is a Neovim colorscheme plugin that provides a family of coordinated light and dark themes. All themes share the same highlight definitions, accent colors, and design philosophy, differing primarily through their background, surface, and text base colors.
+themes.nvim is a Neovim colorscheme plugin that hosts multiple independent theme families. Each family is a self-contained module with its own palettes, accent colors, and highlight logic.
 
 ## Architecture
 
-- **Single source of truth for highlights**: All editor, syntax, Treesitter, and plugin highlight groups (gitsigns, telescope, blink.cmp, statusline, neotree, dap, etc.) are defined in one place inside `lua/sakura/init.lua`.
-- **Palette-driven design**: Each theme is a small data file that returns a table of HSL colors. The shared highlight logic consumes this palette.
-- **HSL color system**: The entire colorscheme operates in HSL space. Conversion and manipulation helpers are in `lua/sakura/color-utils.lua`.
-- **Shared accents**: A fixed set of accent colors (pink, yellow, green, cyan, purple, red) lives in `lua/sakura/colors.lua` and is used across all themes.
+- **Theme families**: Each family lives under `lua/<family>/` with its own loader, palettes, and highlight definitions. Colorscheme entry points in `colors/` use the `<family>-<variant>` naming convention (e.g. `sakura-day`).
+- **Palette-driven design**: Within a family, each variant is a small data file that returns a table of HSL colors. The family's shared highlight logic consumes that palette.
+- **HSL color system**: Colorschemes operate in HSL space. Conversion and manipulation helpers live in each family's module (e.g. `lua/sakura/color-utils.lua`).
 
-## Adding a New Theme
+## Adding a New Theme Family
 
-1. Create a palette definition at `lua/sakura/palettes/sakura-<name>.lua` (copy an existing palette as a starting point).
-2. Create the corresponding Neovim entry point at `colors/sakura-<name>.lua`.
-3. Adjust only the necessary values in the palette (most commonly the `base` color and occasionally the `text` color).
+1. Create a new module at `lua/<family>/` with its own `init.lua`, palette directory, and any shared color utilities.
+2. Add colorscheme entry points at `colors/<family>-<variant>.lua` that call into the new module's loader.
+3. Keep highlight logic inside the family module — do not add family-specific overrides in palette files.
 
-The dynamic loader in `init.lua` will automatically discover the theme via `require("sakura").load("<name>")`.
+## Modifying Theme Visual Behavior
 
-## Modifying Visual Behavior
+Make changes in the `highlights(palette)` and `terminal_highlights(palette)` functions in `lua/sakura/init.lua`. These functions are the authoritative place for all theme highlight groups and terminal color mappings.
 
-Make changes in the `highlights(palette)` and `terminal_highlights(palette)` functions in `lua/sakura/init.lua`. These functions are the authoritative place for all highlight groups and terminal color mappings.
-
-Avoid duplicating highlight logic or creating theme-specific overrides in palette files.
+Avoid duplicating highlight logic or creating variant-specific overrides in palette files.
 
 ## Exporting Themes to Ghostty
 
-A minimal Ghostty theme generator exists (currently commented out) at the end of `M.load` in `lua/sakura/init.lua`.
+A minimal Ghostty theme generator exists (currently commented out) at the end of `M.load` in `lua/<family>/init.lua`.
 
 To generate a Ghostty theme:
 
@@ -37,18 +34,18 @@ To generate a Ghostty theme:
 2. Load the target theme in Neovim (e.g. via `:colorscheme`).
 3. Capture the generated output.
 4. Re-comment the generator block.
-5. Write the output to `~/.config/ghostty/themes/sakura-<name>`.
+5. Write the output to `~/.config/ghostty/themes/<family>-<name>`.
 
 ## Coding Conventions
 
-- Keep theme variants minimal — change only what is necessary (usually just `base`).
+- Keep variant palettes minimal - change only what is necessary (usually just `base`).
 - Prefer using the color utilities (`darken`, `lighten`, `saturate`, `desaturate`, etc.) over hard-coded values.
-- All plugin-specific and syntax highlighting logic belongs in the shared functions in `init.lua`.
+- All plugin-specific and syntax highlighting logic belongs in the shared functions for that theme family.
 
 ## File Layout
 
-- `lua/sakura/init.lua` — Core loader and all highlight definitions
-- `lua/sakura/palettes/` — Individual theme color tables (HSL)
-- `lua/sakura/colors.lua` — Shared accent color definitions
-- `lua/sakura/color-utils.lua` — HSL conversion and manipulation helpers
-- `colors/` — Thin Neovim colorscheme entry points (one per theme)
+- `lua/<family>/init.lua` — Family loader and highlight definitions
+- `lua/<family>/palettes/` — Variant color tables (HSL)
+- `lua/<family>/colors.lua` — Shared accent color definitions (per family, where applicable)
+- `lua/<family>/color-utils.lua` — HSL conversion and manipulation helpers (per family, where applicable)
+- `colors/` — Thin Neovim colorscheme entry points (one per variant)
