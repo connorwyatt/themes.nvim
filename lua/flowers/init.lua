@@ -15,14 +15,14 @@ local function highlights(palette)
     local keyword_text_color = palette.yellow
     local number_text_color = palette.yellow
     local boolean_text_color = palette.yellow
-    local string_text_color = palette.green
-    local function_text_color = palette.cyan
+    local string_text_color = palette.cyan
+    local function_text_color = palette.green
     local metadata_text_color = palette.pink
-    local type_text_color = palette.green
+    local type_text_color = palette.cyan
     local comment_text_color = palette.subtle
     local operator_text_color = palette.subtle
     local punctuation_text_color = palette.subtle
-    local file_text_color = palette.green
+    local file_text_color = palette.cyan
     local guide_color = palette.muted
     local whitespace_text_color = c.blend(palette.subtle, 0.25, palette.muted)
 
@@ -60,7 +60,7 @@ local function highlights(palette)
             BlinkCmpKindVariable = { fg = palette.surface, bg = variable_text_color },
             BlinkCmpLabel = { fg = palette.text },
             BlinkCmpLabelDeprecated = { fg = palette.subtle, strikethrough = true },
-            BlinkCmpLabelDescription = { fg = palette.green },
+            BlinkCmpLabelDescription = { fg = palette.cyan },
             BlinkCmpLabelDetail = { fg = palette.subtle },
             BlinkCmpLabelMatch = { bold = true, underline = true },
             BlinkCmpMenuSelection = { bg = selection_background_color },
@@ -88,9 +88,9 @@ local function highlights(palette)
             DapBreakpointRejectedLineNumber = {},
         },
         dap_ui = {
-            DapUIBreakpointsCurrentLine = { fg = palette.green, bold = true },
+            DapUIBreakpointsCurrentLine = { fg = palette.cyan, bold = true },
             DapUIBreakpointsDisabledLine = { fg = palette.subtle },
-            DapUIBreakpointsInfo = { fg = palette.green },
+            DapUIBreakpointsInfo = { fg = palette.cyan },
             DapUIBreakpointsLine = { fg = palette.purple },
             DapUIBreakpointsPath = { link = "DapUIScope" },
             DapUICurrentFrameName = { link = "DapUINormal" },
@@ -108,7 +108,7 @@ local function highlights(palette)
             DapUIRestart = { fg = palette.green, bg = palette.surface },
             DapUIRestartNC = { fg = palette.green, bg = palette.surface },
             DapUIScope = { fg = palette.text, bold = true },
-            DapUISource = { fg = palette.green },
+            DapUISource = { fg = palette.cyan },
             DapUIStepBack = { fg = palette.cyan, bg = palette.surface },
             DapUIStepBackNC = { fg = palette.cyan, bg = palette.surface },
             DapUIStepInto = { fg = palette.cyan, bg = palette.surface },
@@ -120,15 +120,15 @@ local function highlights(palette)
             DapUIStop = { fg = palette.red, bg = palette.surface },
             DapUIStopNC = { fg = palette.red, bg = palette.surface },
             DapUIStoppedThread = { fg = palette.cyan },
-            DapUIThread = { fg = palette.green },
-            DapUIType = { fg = palette.green },
+            DapUIThread = { fg = palette.cyan },
+            DapUIType = { fg = palette.cyan },
             DapUIUnavailable = { fg = palette.subtle, bg = palette.surface },
             DapUIUnavailableNC = { fg = palette.subtle, bg = palette.surface },
             DapUIValue = { link = "DapUINormal" },
             DapUIVariable = { fg = palette.suble },
             DapUIWatchesEmpty = { fg = palette.red },
             DapUIWatchesError = { fg = palette.red },
-            DapUIWatchesValue = { fg = palette.green },
+            DapUIWatchesValue = { fg = palette.cyan },
             DapUIWinSelect = { fg = palette.cyan, bold = true },
         },
         diagnostics = {
@@ -156,7 +156,7 @@ local function highlights(palette)
             CursorIM = { link = "Cursor" },
             CursorLine = { bg = palette.highlight_low },
             CursorLineNr = { fg = palette.yellow },
-            Directory = { fg = palette.green },
+            Directory = { fg = palette.cyan },
             EndOfBuffer = { fg = whitespace_text_color },
             ErrorMsg = { fg = palette.red },
             FoldColumn = { fg = palette.subtle },
@@ -265,12 +265,12 @@ local function highlights(palette)
             LuasnipChoiceNodeUnvisitedVirtualText = { fg = palette.yellow },
             LuasnipChoiceNodeVisited = { sp = palette.yellow_background, underdashed = true },
             LuasnipChoiceNodeVisitedVirtualText = { fg = palette.yellow_background },
-            LuasnipInsertNodeActive = { bg = palette.cyan_background, sp = palette.cyan, underline = true },
-            LuasnipInsertNodeActiveVirtualText = { fg = palette.cyan },
-            LuasnipInsertNodeUnvisited = { sp = palette.cyan, underdashed = true },
-            LuasnipInsertNodeUnvisitedVirtualText = { fg = palette.cyan },
-            LuasnipInsertNodeVisited = { sp = palette.cyan_background, underdashed = true },
-            LuasnipInsertNodeVisitedVirtualText = { fg = palette.cyan_background },
+            LuasnipInsertNodeActive = { bg = palette.green_background, sp = palette.green, underline = true },
+            LuasnipInsertNodeActiveVirtualText = { fg = palette.green },
+            LuasnipInsertNodeUnvisited = { sp = palette.green, underdashed = true },
+            LuasnipInsertNodeUnvisitedVirtualText = { fg = palette.green },
+            LuasnipInsertNodeVisited = { sp = palette.green_background, underdashed = true },
+            LuasnipInsertNodeVisitedVirtualText = { fg = palette.green_background },
         },
         navic = {
             NavicIconsFile = { fg = file_text_color },
@@ -350,8 +350,8 @@ local function highlights(palette)
             StatusLineGitRemoved = { fg = git_removed_text_color },
             StatusLineGitNone = { fg = palette.subtle },
             StatusLineLSPText = { fg = palette.green },
-            StatusLineModeCommand = { bg = palette.green, fg = palette.overlay, bold = true },
-            StatusLineModeCommandText = { bg = "NONE", fg = palette.green, bold = true },
+            StatusLineModeCommand = { bg = palette.cyan, fg = palette.overlay, bold = true },
+            StatusLineModeCommandText = { bg = "NONE", fg = palette.cyan, bold = true },
             StatusLineModeInsert = { bg = palette.yellow, fg = palette.overlay, bold = true },
             StatusLineModeInsertText = { bg = "NONE", fg = palette.yellow, bold = true },
             StatusLineModeNormal = { bg = palette.yellow, fg = palette.overlay, bold = true },
@@ -362,15 +362,15 @@ local function highlights(palette)
             StatusLineModeSelectText = { bg = "NONE", fg = palette.red, bold = true },
             StatusLineModeTerminal = { bg = palette.purple, fg = palette.overlay, bold = true },
             StatusLineModeTerminalText = { bg = "NONE", fg = palette.purple, bold = true },
-            StatusLineModeVisual = { bg = palette.cyan, fg = palette.overlay, bold = true },
-            StatusLineModeVisualText = { bg = "NONE", fg = palette.cyan, bold = true },
-            StatusLineModeCommandSubtle = { bg = c.desaturate(palette.green_background, 10) },
+            StatusLineModeVisual = { bg = palette.green, fg = palette.overlay, bold = true },
+            StatusLineModeVisualText = { bg = "NONE", fg = palette.green, bold = true },
+            StatusLineModeCommandSubtle = { bg = c.desaturate(palette.cyan_background, 10) },
             StatusLineModeInsertSubtle = { bg = c.desaturate(palette.yellow_background, 10) },
             StatusLineModeNormalSubtle = { bg = c.desaturate(palette.yellow_background, 10) },
             StatusLineModeReplaceSubtle = { bg = c.desaturate(palette.red_background, 10) },
             StatusLineModeSelectSubtle = { bg = c.desaturate(palette.red_background, 10) },
             StatusLineModeTerminalSubtle = { bg = c.desaturate(palette.purple_background, 10) },
-            StatusLineModeVisualSubtle = { bg = c.desaturate(palette.cyan_background, 10) },
+            StatusLineModeVisualSubtle = { bg = c.desaturate(palette.green_background, 10) },
             StatusLineNC = { fg = palette.subtle, bg = palette.base },
             StatusLineSectionA = { fg = palette.text, bg = palette.overlay },
             StatusLineSectionAInactive = { fg = palette.subtle, bg = palette.overlay },
@@ -389,7 +389,7 @@ local function highlights(palette)
             Error = { fg = palette.red },
             Exception = { link = "Keyword" },
             Float = { link = "Number" },
-            Function = { fg = palette.cyan },
+            Function = { fg = function_text_color },
             Identifier = { fg = palette.text },
             Include = { link = "PreProc" },
             Italic = { italic = true },
@@ -409,12 +409,12 @@ local function highlights(palette)
             Structure = { link = "Keyword" },
             Tag = { fg = palette.yellow },
             Todo = { fg = palette.yellow },
-            Type = { fg = palette.green },
+            Type = { fg = type_text_color },
             Typedef = { link = "Type" },
             Underlined = { underline = true },
             diffAdded = { fg = git_added_text_color },
             diffChanged = { fg = git_changed_text_color },
-            diffFile = { fg = palette.cyan },
+            diffFile = { fg = palette.green },
             diffIndexLine = { fg = palette.yellow },
             diffLine = { fg = palette.yellow },
             diffNewFile = { fg = palette.purple },
@@ -424,7 +424,7 @@ local function highlights(palette)
         telescope = {
             TelescopeBorder = { bg = float_background_color, fg = palette.highlight_high },
             TelescopeNormal = { link = "NormalFloat" },
-            TelescopePromptCounter = { fg = palette.green },
+            TelescopePromptCounter = { fg = palette.cyan },
             TelescopeTitle = { link = "FloatTitle" },
         },
         treesitter = {
@@ -437,7 +437,7 @@ local function highlights(palette)
             ["@comment"] = { fg = comment_text_color, italic = true },
             ["@comment.documentation"] = { fg = palette.pink, italic = true },
             ["@comment.error"] = { fg = palette.red, italic = true },
-            ["@comment.info"] = { fg = palette.cyan, italic = true },
+            ["@comment.info"] = { fg = palette.green, italic = true },
             ["@comment.note"] = { fg = palette.purple, italic = true },
             ["@comment.todo"] = { fg = palette.yellow, italic = true },
             ["@comment.warning"] = { fg = palette.yellow, italic = true },
@@ -484,7 +484,7 @@ local function highlights(palette)
             ["@punctuation.special"] = { fg = punctuation_text_color },
             ["@string"] = { fg = string_text_color },
             ["@string.documentation"] = { link = "@string" },
-            ["@string.escape"] = { fg = palette.cyan },
+            ["@string.escape"] = { fg = palette.green },
             ["@string.regexp"] = { link = "@string" },
             ["@string.special"] = { link = "@string" },
             ["@string.special.path"] = { link = "@string.special.url" },
