@@ -8,9 +8,9 @@ themes.nvim is a Neovim colorscheme plugin that hosts multiple independent theme
 
 ## Architecture
 
-- **Theme families**: Each family lives under `lua/<family>/` with its own loader, palettes, and highlight definitions. Colorscheme entry points in `colors/` use the `<family>-<variant>` naming convention (e.g. `sakura-day`).
+- **Theme families**: Each family lives under `lua/<family>/` with its own loader, palettes, and highlight definitions. Colorscheme entry points in `colors/` use the `<family>-<variant>` naming convention (e.g. `sakura-day`, `flowers-night`).
 - **Palette-driven design**: Within a family, each variant is a small data file that returns a table of HSL colors. The family's shared highlight logic consumes that palette.
-- **HSL color system**: Colorschemes operate in HSL space. Conversion and manipulation helpers live in each family's module (e.g. `lua/sakura/color-utils.lua`).
+- **HSL color system**: Colorschemes operate in HSL space. Conversion and manipulation helpers live in the shared `lua/themes/color-utils.lua` module.
 
 ## Adding a New Theme Family
 
@@ -20,7 +20,7 @@ themes.nvim is a Neovim colorscheme plugin that hosts multiple independent theme
 
 ## Modifying Theme Visual Behavior
 
-Make changes in the `highlights(palette)` and `terminal_highlights(palette)` functions in `lua/sakura/init.lua`. These functions are the authoritative place for all theme highlight groups and terminal color mappings.
+Make changes in the `highlights(palette)` and `terminal_highlights(palette)` functions in `lua/<family>/init.lua` (e.g. `lua/sakura/init.lua`, `lua/flowers/init.lua`). These functions are the authoritative place for all theme highlight groups and terminal color mappings.
 
 Avoid duplicating highlight logic or creating variant-specific overrides in palette files.
 
@@ -47,5 +47,5 @@ To generate a Ghostty theme:
 - `lua/<family>/init.lua` — Family loader and highlight definitions
 - `lua/<family>/palettes/` — Variant color tables (HSL)
 - `lua/<family>/colors.lua` — Shared accent color definitions (per family, where applicable)
-- `lua/<family>/color-utils.lua` — HSL conversion and manipulation helpers (per family, where applicable)
+- `lua/themes/color-utils.lua` — Shared HSL conversion and manipulation helpers
 - `colors/` — Thin Neovim colorscheme entry points (one per variant)

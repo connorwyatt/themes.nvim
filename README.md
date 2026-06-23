@@ -35,3 +35,15 @@ A coordinated family of light and dark themes that share highlight definitions a
 ```vim
 :colorscheme sakura-night
 ```
+
+### Flowers
+
+A coordinated family of themes that share highlight definitions and saturated accent colors.
+
+| Colorscheme |
+| --- |
+| `flowers-night` |
+
+```vim
+:colorscheme flowers-night
+```
