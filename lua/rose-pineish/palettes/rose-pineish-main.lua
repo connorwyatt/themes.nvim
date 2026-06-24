@@ -30,7 +30,7 @@ return {
     leaf = color_palette.leaf,
     leaf_background = c.desaturate(c.darken(color_palette.leaf, 35), 15),
     highlight_low = { 244, 18, 15 },
-    highlight_med = { 249, 15, 28 },
+    highlight_medium = { 249, 15, 28 },
     highlight_high = { 248, 13, 36 },
     cursor_background = color_palette.gold,
     cursor_text = white,
