@@ -12,7 +12,7 @@ local function hsl_to_rgb(hsl)
     local l = hsl[3] / 100
 
     if s == 0 then
-        return { l, l, l }
+        return { l * 255, l * 255, l * 255 }
     end
 
     local function hue_to_rgb(p, q, t)

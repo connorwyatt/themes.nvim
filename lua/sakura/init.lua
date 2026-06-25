@@ -2,6 +2,9 @@ local c = require("themes.color-utils")
 
 local function highlights(palette)
     local float_background_color = palette.surface
+    local completion_menu_accent_color = palette.cyan
+    local completion_menu_background_color = c.blend(palette.cyan, 0.4, palette.base)
+    local completion_menu_selection_background_color = c.blend(completion_menu_accent_color, 0.3, completion_menu_background_color)
 
     local strong_selection_background_color = palette.highlight_high
     local selection_background_color = palette.highlight_medium
@@ -55,7 +58,7 @@ local function highlights(palette)
             BlinkCmpKindProperty = { fg = palette.surface, bg = property_text_color },
             BlinkCmpKindSnippet = { fg = palette.surface, bg = palette.red },
             BlinkCmpKindStruct = { link = "BlinkCmpKindClass" },
-            BlinkCmpKindText = { fg = palette.surface, bg = palette.subtle },
+            BlinkCmpKindText = { fg = palette.text, bg = completion_menu_background_color },
             BlinkCmpKindUnit = { link = "BlinkCmpKindKeyword" },
             BlinkCmpKindVariable = { fg = palette.surface, bg = variable_text_color },
             BlinkCmpLabel = { fg = palette.text },
@@ -63,11 +66,18 @@ local function highlights(palette)
             BlinkCmpLabelDescription = { fg = palette.yellow },
             BlinkCmpLabelDetail = { fg = palette.subtle },
             BlinkCmpLabelMatch = { bold = true, underline = true },
-            BlinkCmpMenuSelection = { bg = selection_background_color },
-            BlinkCmpScrollBarGutter = { bg = palette.overlay },
-            BlinkCmpScrollBarThumb = { bg = palette.muted },
-            BlinkCmpSignatureHelp = { link = "NormalFloat" },
-            BlinkCmpSignatureHelpActiveParameter = { bg = selection_background_color },
+            BlinkCmpMenu = { fg = palette.text, bg = completion_menu_background_color },
+            BlinkCmpMenuBorder = { fg = completion_menu_accent_color, bg = completion_menu_background_color },
+            BlinkCmpMenuSelection = { fg = palette.text, bg = completion_menu_selection_background_color },
+            BlinkCmpDoc = { fg = palette.text, bg = completion_menu_background_color },
+            BlinkCmpDocBorder = { fg = completion_menu_accent_color, bg = completion_menu_background_color },
+            BlinkCmpDocSeparator = { fg = palette.highlight_high, bg = completion_menu_background_color },
+            BlinkCmpDocCursorLine = { bg = completion_menu_selection_background_color },
+            BlinkCmpScrollBarGutter = { bg = c.darken(completion_menu_background_color, 12) },
+            BlinkCmpScrollBarThumb = { bg = completion_menu_accent_color },
+            BlinkCmpSignatureHelp = { fg = palette.text, bg = completion_menu_background_color },
+            BlinkCmpSignatureHelpBorder = { fg = completion_menu_accent_color, bg = completion_menu_background_color },
+            BlinkCmpSignatureHelpActiveParameter = { fg = palette.text, bg = completion_menu_selection_background_color },
             BlinkCmpSrc = { fg = palette.subtle },
         },
         dap = {
