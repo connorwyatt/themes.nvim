@@ -33,5 +33,5 @@ return {
     highlight_medium = c.darken(base, 5),
     highlight_high = c.darken(base, 10),
     cursor_background = color_palette.gold,
-    cursor_text = white,
+    cursor_text = text,
 }

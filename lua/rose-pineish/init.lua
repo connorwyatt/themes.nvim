@@ -9,16 +9,16 @@ local function highlights(palette)
     local separator_color = palette.highlight_high
 
     local variable_text_color = palette.text
-    local parameter_text_color = palette.iris
+    local parameter_text_color = palette.foam
     local constant_text_color = palette.gold
     local property_text_color = palette.foam
     local keyword_text_color = palette.pine
     local number_text_color = palette.gold
     local boolean_text_color = palette.love
     local string_text_color = palette.gold
-    local function_text_color = palette.love
+    local function_text_color = palette.iris
     local metadata_text_color = palette.iris
-    local type_text_color = palette.foam
+    local type_text_color = palette.love
     local comment_text_color = palette.subtle
     local operator_text_color = palette.subtle
     local punctuation_text_color = palette.subtle
@@ -28,8 +28,8 @@ local function highlights(palette)
 
     local git_added_text_color = palette.leaf
     local git_added_background_color = palette.leaf_background
-    local git_changed_text_color = palette.gold
-    local git_changed_background_color = palette.gold_background
+    local git_changed_text_color = palette.foam
+    local git_changed_background_color = palette.foam_background
     local git_removed_text_color = palette.rose
     local git_removed_background_color = palette.rose_background
     local git_untracked_text_color = palette.iris
@@ -299,7 +299,7 @@ local function highlights(palette)
             NavicIconsEvent = { fg = type_text_color },
             NavicIconsOperator = { fg = operator_text_color },
             NavicIconsTypeParameter = { fg = parameter_text_color },
-            NavicText = { link = "Normal" },
+            NavicText = { fg = palette.text },
             NavicSeparator = { fg = whitespace_text_color },
         },
         neotree = {
@@ -597,35 +597,20 @@ end
 local M = {}
 
 ---@param theme string
+---@return string
+function M.ghostty_theme(theme)
+    local palette = require("rose-pineish.palettes.rose-pineish-" .. theme)
+    local hl = highlights(palette)
+    local terminal_hl = terminal_highlights(palette)
+    return require("themes.ghostty").generate(palette, hl, terminal_hl)
+end
+
+---@param theme string
 function M.load(theme)
     local palette = require("rose-pineish.palettes.rose-pineish-" .. theme)
     local hl = highlights(palette)
     local terminal_hl = terminal_highlights(palette)
     set_all_highlights(hl, terminal_hl)
-
-    -- Primitive Ghostty theme generator
-    -- print("palette = 0=" .. c.hsl_to_hex(terminal_hl.black))
-    -- print("palette = 1=" .. c.hsl_to_hex(terminal_hl.red))
-    -- print("palette = 2=" .. c.hsl_to_hex(terminal_hl.green))
-    -- print("palette = 3=" .. c.hsl_to_hex(terminal_hl.yellow))
-    -- print("palette = 4=" .. c.hsl_to_hex(terminal_hl.blue))
-    -- print("palette = 5=" .. c.hsl_to_hex(terminal_hl.magenta))
-    -- print("palette = 6=" .. c.hsl_to_hex(terminal_hl.cyan))
-    -- print("palette = 7=" .. c.hsl_to_hex(terminal_hl.white))
-    -- print("palette = 8=" .. c.hsl_to_hex(terminal_hl.black_bright))
-    -- print("palette = 9=" .. c.hsl_to_hex(terminal_hl.red_bright))
-    -- print("palette = 10=" .. c.hsl_to_hex(terminal_hl.green_bright))
-    -- print("palette = 11=" .. c.hsl_to_hex(terminal_hl.yellow_bright))
-    -- print("palette = 12=" .. c.hsl_to_hex(terminal_hl.blue_bright))
-    -- print("palette = 13=" .. c.hsl_to_hex(terminal_hl.magenta_bright))
-    -- print("palette = 14=" .. c.hsl_to_hex(terminal_hl.cyan_bright))
-    -- print("palette = 15=" .. c.hsl_to_hex(terminal_hl.white_bright))
-    -- print("background=" .. c.hsl_to_hex(palette.base))
-    -- print("foreground=" .. c.hsl_to_hex(palette.text))
-    -- print("cursor-color=" .. hl.editor.Cursor.bg)
-    -- print("cursor-text=" .. hl.editor.Cursor.fg)
-    -- print("selection-background=" .. c.hsl_to_hex(terminal_hl.black))
-    -- print("selection-foreground=" .. c.hsl_to_hex(palette.text))
 end
 
 return M

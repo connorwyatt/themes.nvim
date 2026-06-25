@@ -33,5 +33,5 @@ return {
     highlight_medium = { 249, 15, 28 },
     highlight_high = { 248, 13, 36 },
     cursor_background = color_palette.gold,
-    cursor_text = white,
+    cursor_text = base,
 }
