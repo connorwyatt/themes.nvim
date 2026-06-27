@@ -13,11 +13,14 @@ local cyan = color_palette.cyan
 local purple = c.darken(color_palette.purple, 5)
 local red = color_palette.red
 
+local overlay = c.darken(base, 6)
+
 return {
     is_dark = false,
     base = base,
     surface = c.darken(base, 3),
-    overlay = c.darken(base, 6),
+    overlay = overlay,
+    scrollbar_thumb = c.darken(overlay, 6),
     text = text,
     subtle = c.lighten(text, 20),
     muted = c.lighten(text, 45),

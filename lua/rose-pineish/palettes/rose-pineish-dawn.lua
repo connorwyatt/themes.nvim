@@ -6,11 +6,14 @@ local text = { 248, 19, 32 }
 
 local white = "#ffffff"
 
+local overlay = { 28, 40, 92 }
+
 return {
     is_dark = false,
     base = base,
     surface = { 35, 100, 98 },
-    overlay = { 28, 40, 92 },
+    overlay = overlay,
+    scrollbar_thumb = c.darken(overlay, 6),
     text = text,
     subtle = { 248, 12, 52 },
     muted = { 257, 9, 61 },

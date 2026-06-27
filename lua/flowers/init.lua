@@ -2,10 +2,6 @@ local c = require("themes.color-utils")
 
 local function highlights(palette)
     local float_background_color = palette.surface
-    local completion_menu_accent_color = palette.cyan
-    local completion_menu_background_color = c.blend(palette.cyan, 0.4, palette.base)
-    local completion_menu_selection_background_color = c.blend(completion_menu_accent_color, 0.3, completion_menu_background_color)
-
     local strong_selection_background_color = palette.highlight_high
     local selection_background_color = palette.highlight_medium
 
@@ -58,7 +54,7 @@ local function highlights(palette)
             BlinkCmpKindProperty = { fg = palette.surface, bg = property_text_color },
             BlinkCmpKindSnippet = { fg = palette.surface, bg = palette.red },
             BlinkCmpKindStruct = { link = "BlinkCmpKindClass" },
-            BlinkCmpKindText = { fg = palette.text, bg = completion_menu_background_color },
+            BlinkCmpKindText = { fg = palette.surface, bg = palette.subtle },
             BlinkCmpKindUnit = { link = "BlinkCmpKindKeyword" },
             BlinkCmpKindVariable = { fg = palette.surface, bg = variable_text_color },
             BlinkCmpLabel = { fg = palette.text },
@@ -66,18 +62,10 @@ local function highlights(palette)
             BlinkCmpLabelDescription = { fg = palette.cyan },
             BlinkCmpLabelDetail = { fg = palette.subtle },
             BlinkCmpLabelMatch = { bold = true, underline = true },
-            BlinkCmpMenu = { fg = palette.text, bg = completion_menu_background_color },
-            BlinkCmpMenuBorder = { fg = completion_menu_accent_color, bg = completion_menu_background_color },
-            BlinkCmpMenuSelection = { fg = palette.text, bg = completion_menu_selection_background_color },
-            BlinkCmpDoc = { fg = palette.text, bg = completion_menu_background_color },
-            BlinkCmpDocBorder = { fg = completion_menu_accent_color, bg = completion_menu_background_color },
-            BlinkCmpDocSeparator = { fg = palette.highlight_high, bg = completion_menu_background_color },
-            BlinkCmpDocCursorLine = { bg = completion_menu_selection_background_color },
-            BlinkCmpScrollBarGutter = { bg = c.darken(completion_menu_background_color, 12) },
-            BlinkCmpScrollBarThumb = { bg = completion_menu_accent_color },
-            BlinkCmpSignatureHelp = { fg = palette.text, bg = completion_menu_background_color },
-            BlinkCmpSignatureHelpBorder = { fg = completion_menu_accent_color, bg = completion_menu_background_color },
-            BlinkCmpSignatureHelpActiveParameter = { fg = palette.text, bg = completion_menu_selection_background_color },
+            BlinkCmpMenuSelection = { bg = selection_background_color },
+            BlinkCmpDoc = { link = "BlinkCmpMenu" },
+            BlinkCmpSignatureHelp = { link = "BlinkCmpMenu" },
+            BlinkCmpSignatureHelpActiveParameter = { bg = selection_background_color },
             BlinkCmpSrc = { fg = palette.subtle },
         },
         dap = {
@@ -182,11 +170,12 @@ local function highlights(palette)
             Normal = { fg = palette.text, bg = palette.base },
             NormalFloat = { fg = palette.text, bg = float_background_color },
             NormalNC = { fg = palette.subtle, bg = palette.base },
-            Pmenu = { fg = palette.text, bg = palette.surface },
+            Pmenu = { fg = palette.text, bg = palette.overlay },
             PmenuExtra = { fg = palette.subtle, bg = "NONE" },
             PmenuSbar = { link = "Pmenu" },
-            PmenuSel = { fg = palette.text, bg = palette.overlay },
-            PmenuThumb = { bg = palette.overlay },
+            PmenuSel = { fg = palette.text, bg = selection_background_color },
+            PmenuThumb = { bg = palette.scrollbar_thumb },
+            Scrollbar = { fg = palette.scrollbar_thumb },
             Question = { link = "MoreMsg" },
             QuickFixLine = { link = "CursorLine" },
             Search = { bg = selection_background_color },
@@ -337,6 +326,29 @@ local function highlights(palette)
             SnacksIndent = { fg = guide_color },
             SnacksIndentScope = { fg = palette.yellow },
             SnacksPickerMatch = { fg = palette.yellow, bold = true, underline = true },
+        },
+        scrollbar = {
+            ScrollbarHandle = { link = "PmenuThumb" },
+            ScrollbarCursor = { link = "CursorLineNr" },
+            ScrollbarCursorHandle = { fg = palette.yellow, bg = palette.scrollbar_thumb },
+            ScrollbarSearch = { fg = palette.text },
+            ScrollbarSearchHandle = { fg = palette.text, bg = palette.scrollbar_thumb },
+            ScrollbarError = { fg = palette.red },
+            ScrollbarErrorHandle = { fg = palette.red, bg = palette.scrollbar_thumb },
+            ScrollbarWarn = { fg = palette.yellow },
+            ScrollbarWarnHandle = { fg = palette.yellow, bg = palette.scrollbar_thumb },
+            ScrollbarInfo = { fg = palette.cyan },
+            ScrollbarInfoHandle = { fg = palette.cyan, bg = palette.scrollbar_thumb },
+            ScrollbarHint = { fg = palette.purple },
+            ScrollbarHintHandle = { fg = palette.purple, bg = palette.scrollbar_thumb },
+            ScrollbarMisc = { link = "NonText" },
+            ScrollbarMiscHandle = { fg = palette.subtle, bg = palette.scrollbar_thumb },
+            ScrollbarGitAdd = { fg = git_added_text_color },
+            ScrollbarGitAddHandle = { fg = git_added_text_color, bg = palette.scrollbar_thumb },
+            ScrollbarGitChange = { fg = git_changed_text_color },
+            ScrollbarGitChangeHandle = { fg = git_changed_text_color, bg = palette.scrollbar_thumb },
+            ScrollbarGitDelete = { fg = git_removed_text_color },
+            ScrollbarGitDeleteHandle = { fg = git_removed_text_color, bg = palette.scrollbar_thumb },
         },
         statusline = {
             StatusLine = { fg = palette.text, bg = palette.overlay },

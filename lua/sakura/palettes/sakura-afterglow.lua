@@ -8,11 +8,14 @@ local white = "#ffffff"
 
 local pink_background = c.desaturate(c.darken(color_palette.pink, 35), 25)
 
+local overlay = c.darken(base, 6)
+
 return {
     is_dark = true,
     base = base,
     surface = c.darken(base, 3),
-    overlay = c.darken(base, 6),
+    overlay = overlay,
+    scrollbar_thumb = c.lighten(overlay, 10),
     text = text,
     subtle = c.saturate(c.darken(text, 25), 10),
     muted = c.saturate(c.darken(text, 60), 20),
